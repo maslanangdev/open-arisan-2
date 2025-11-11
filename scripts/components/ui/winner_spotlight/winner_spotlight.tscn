@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhga6l105rwpq"]
+
+[ext_resource type="PackedScene" uid="uid://dbv8tnf05u4v7" path="res://scripts/components/ui/winner_spotlight/spotlight/spotlight.tscn" id="1_0as71"]
+[ext_resource type="Script" uid="uid://ccqj78in4objx" path="res://scripts/components/ui/winner_spotlight/winner_spotlight.gd" id="1_5hft1"]
+[ext_resource type="PackedScene" uid="uid://clgvfbdav2kif" path="res://scripts/libs/vfx/particles/confetti/confetti_2.tscn" id="3_tjrjq"]
+
+[node name="WinnerSpotlight" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 2
+script = ExtResource("1_5hft1")
+
+[node name="SeperatorUp" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 720)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Container" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+
+[node name="SeparatorL" type="Control" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BottomLeft" type="Control" parent="Container"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Spotlight1" parent="Container/BottomLeft" instance=ExtResource("1_0as71")]
+unique_name_in_owner = true
+
+[node name="Confetti1" parent="Container/BottomLeft" instance=ExtResource("3_tjrjq")]
+unique_name_in_owner = true
+
+[node name="SeparatorLM" type="Control" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SeparatorM" type="Control" parent="Container"]
+custom_minimum_size = Vector2(720, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SeparatorRM" type="Control" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BottomRight" type="Control" parent="Container"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Spotlight2" parent="Container/BottomRight" instance=ExtResource("1_0as71")]
+unique_name_in_owner = true
+flip_h = true
+
+[node name="Confetti2" parent="Container/BottomRight" instance=ExtResource("3_tjrjq")]
+unique_name_in_owner = true
+rotation = -2.0943952
+
+[node name="SeparatorR" type="Control" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SeperatorDown" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3

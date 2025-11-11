@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbv8tnf05u4v7"]
+
+[ext_resource type="Script" uid="uid://3u3wvsl77hm5" path="res://scripts/components/ui/winner_spotlight/spotlight/spotlight.gd" id="1_1yba0"]
+[ext_resource type="Texture2D" uid="uid://bkp4bckysh508" path="res://resources/images/sprites/shine_cone.png" id="2_1yba0"]
+
+[node name="Spotlight" type="Node2D"]
+script = ExtResource("1_1yba0")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -589.0
+offset_top = -521.0
+offset_right = 606.0
+offset_bottom = 585.0
+color = Color(0.20871013, 0.20871016, 0.20871013, 1)
+
+[node name="Container" type="Node2D" parent="."]
+
+[node name="Spotlight" type="Node2D" parent="Container"]
+unique_name_in_owner = true
+rotation = -0.8420022
+
+[node name="ShineCone" type="Sprite2D" parent="Container/Spotlight"]
+modulate = Color(1, 1, 1, 0.39215687)
+position = Vector2(360, 0)
+texture = ExtResource("2_1yba0")
+
+[node name="PointLight2D" type="PointLight2D" parent="Container/Spotlight"]
+unique_name_in_owner = true
+position = Vector2(360, 0)
+range_layer_min = -3
+range_layer_max = 3
+texture = ExtResource("2_1yba0")

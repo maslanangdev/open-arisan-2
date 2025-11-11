@@ -1,0 +1,159 @@
+[gd_scene load_steps=12 format=3 uid="uid://cjpbipivafssk"]
+
+[ext_resource type="Theme" uid="uid://cvocwk6x1wj7h" path="res://config/themes/global.tres" id="1_8u66s"]
+[ext_resource type="Script" uid="uid://bdh7ke80ck86k" path="res://scripts/components/ui/inspector/inspector.gd" id="1_t033l"]
+[ext_resource type="Texture2D" uid="uid://dgkrf62s3opvk" path="res://resources/images/sprites/paper.png" id="2_8u66s"]
+[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/libs/button/general_button.gd" id="3_72us0"]
+[ext_resource type="FontFile" uid="uid://xme5aeq8q7r7" path="res://resources/fonts/caskaydia/CaskaydiaCoveNerdFont-Bold.ttf" id="4_wc7lp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wc7lp"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_72us0"]
+bg_color = Color(0.18359044, 0.18359044, 0.18359044, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kxgm7"]
+bg_color = Color(0.31061712, 0.31061712, 0.31061706, 1)
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qmjp7"]
+bg_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x3wfo"]
+bg_color = Color(0.23031491, 0.23031494, 0.23031494, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0aum5"]
+bg_color = Color(0.19076216, 0.19076237, 0.19076231, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Inspector" type="Control"]
+z_index = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -720.0
+offset_bottom = -720.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("1_8u66s")
+script = ExtResource("1_t033l")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_left = -64.0
+offset_top = -176.0
+offset_right = 64.0
+offset_bottom = 88.0
+mouse_filter = 2
+
+[node name="InspectContainer" type="VBoxContainer" parent="CenterContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 312)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="Up" type="VBoxContainer" parent="CenterContainer/InspectContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="UpMargin" type="CenterContainer" parent="CenterContainer/InspectContainer/Up"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PreviewButton" type="Button" parent="CenterContainer/InspectContainer/Up/UpMargin"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_wc7lp")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_72us0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kxgm7")
+action_mode = 0
+script = ExtResource("3_72us0")
+
+[node name="Preview" type="TextureRect" parent="CenterContainer/InspectContainer/Up/UpMargin"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_8u66s")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacer" type="Control" parent="CenterContainer/InspectContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Down" type="VBoxContainer" parent="CenterContainer/InspectContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="EditButton" type="Button" parent="CenterContainer/InspectContainer/Down"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 38)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_wc7lp")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_qmjp7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x3wfo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0aum5")
+action_mode = 0
+text = "Ganti"
+script = ExtResource("3_72us0")
+
+[node name="DeleteButton" type="Button" parent="CenterContainer/InspectContainer/Down"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(96, 38)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource("1_8u66s")
+theme_type_variation = &"DarkButton"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_wc7lp")
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_qmjp7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x3wfo")
+theme_override_styles/hover = SubResource("StyleBoxFlat_0aum5")
+action_mode = 0
+text = "Hapus"
+script = ExtResource("3_72us0")

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlkw23a56je3m"]
+
+[ext_resource type="Script" uid="uid://dxqlk23sapaci" path="res://scenes/cache_loader/cache_loader.gd" id="1_baf7k"]
+
+[node name="CacheLoader" type="Node"]
+script = ExtResource("1_baf7k")

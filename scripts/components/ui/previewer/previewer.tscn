@@ -1,0 +1,99 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhoyf86d6ufjl"]
+
+[ext_resource type="Theme" uid="uid://cvocwk6x1wj7h" path="res://config/themes/global.tres" id="1_di4fj"]
+[ext_resource type="Script" uid="uid://dew7mdco0akis" path="res://scripts/components/ui/previewer/previewer.gd" id="1_encsf"]
+[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/libs/button/general_button.gd" id="3_jy6jr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_di4fj"]
+bg_color = Color(0.12315822, 0.11774104, 0.1680183, 0.75000006)
+
+[node name="Previewer" type="PanelContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_di4fj")
+theme_override_styles/panel = SubResource("StyleBoxFlat_di4fj")
+script = ExtResource("1_encsf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="TextureTemp" type="Control" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="TextureContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 82
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 82
+theme_override_constants/margin_bottom = 32
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TextureContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+mouse_filter = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="BL" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="PrevButton" type="Button" parent="MarginContainer/HBoxContainer/BL"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+text = "<"
+script = ExtResource("3_jy6jr")
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BR" type="CenterContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="NextButton" type="Button" parent="MarginContainer/HBoxContainer/BR"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+focus_mode = 0
+mouse_filter = 1
+text = ">"
+script = ExtResource("3_jy6jr")
+
+[node name="Control" type="BoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+mouse_filter = 2
+alignment = 2
+
+[node name="ExitButton" type="Button" parent="MarginContainer/Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+mouse_filter = 1
+text = ""
+script = ExtResource("3_jy6jr")

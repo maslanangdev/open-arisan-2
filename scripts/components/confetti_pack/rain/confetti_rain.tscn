@@ -1,0 +1,112 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccc8qr6gny81l"]
+
+[sub_resource type="Curve" id="Curve_vebv3"]
+_data = [Vector2(0.008333333, 0.77528095), 0.0, 0.0, 0, 0, Vector2(0.27083334, 0.4044944), 0.0, 0.0, 0, 0, Vector2(0.5833333, 0.73033714), 0.0, 0.0, 0, 0, Vector2(0.8208333, 0.6516854), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 5
+
+[sub_resource type="CurveTexture" id="CurveTexture_orym2"]
+curve = SubResource("Curve_vebv3")
+
+[sub_resource type="Curve" id="Curve_orym2"]
+_data = [Vector2(0.25000003, 1), 0.0, 0.0, 0, 0, Vector2(0.5541667, 0.3595506), 0.0, 0.0, 0, 0, Vector2(0.97083336, 0.10112369), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ey7di"]
+curve = SubResource("Curve_orym2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ey7di"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 360, 1)
+angle_min = -720.0
+angle_max = 720.0
+spread = 30.0
+initial_velocity_min = 100.0
+initial_velocity_max = 420.0
+angular_velocity_min = -720.0
+angular_velocity_max = 719.99994
+radial_velocity_min = -25.000021
+radial_velocity_max = 24.999977
+gravity = Vector3(0, 300, 0)
+scale_min = 5.0
+scale_max = 10.0
+color = Color(1, 1, 1, 0.5)
+alpha_curve = SubResource("CurveTexture_orym2")
+emission_curve = SubResource("CurveTexture_ey7di")
+hue_variation_min = -1.0
+hue_variation_max = 0.99999994
+turbulence_enabled = true
+turbulence_noise_strength = 0.0
+turbulence_influence_min = 0.014
+turbulence_influence_max = 0.052
+
+[node name="ConfettiRain" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="Top" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TopLeft" type="Control" parent="Top"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Confetti1" type="GPUParticles2D" parent="Top/TopLeft"]
+unique_name_in_owner = true
+position = Vector2(-3.8146973e-06, 1.5258789e-05)
+rotation = 1.5707964
+scale = Vector2(0.99999994, 0.99999994)
+amount = 128
+lifetime = 5.0
+preprocess = 3.0
+speed_scale = 0.5
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ey7di")
+
+[node name="Separator1" type="Control" parent="Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="Center" type="Control" parent="Top"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Confetti1" type="GPUParticles2D" parent="Top/Center"]
+position = Vector2(0, 1.1444092e-05)
+rotation = -4.712389
+scale = Vector2(0.9999999, 0.9999999)
+amount = 128
+lifetime = 5.0
+preprocess = 3.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ey7di")
+
+[node name="Separator2" type="Control" parent="Top"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="TopRight" type="Control" parent="Top"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Confetti1" type="GPUParticles2D" parent="Top/TopRight"]
+position = Vector2(0, 3.14722e-05)
+rotation = 1.5707964
+scale = Vector2(0.99999976, 0.99999976)
+amount = 128
+lifetime = 5.0
+preprocess = 3.0
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_ey7di")

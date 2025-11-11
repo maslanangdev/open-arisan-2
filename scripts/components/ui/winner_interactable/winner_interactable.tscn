@@ -1,0 +1,31 @@
+[gd_scene load_steps=8 format=3 uid="uid://3ybh7v3obbk0"]
+
+[ext_resource type="Script" uid="uid://byw26j7nlkkx0" path="res://scripts/components/ui/winner_interactable/winner_interactable.gd" id="1_pb31r"]
+[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/libs/button/general_button.gd" id="2_vhuh0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pb31r"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_stpda"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_clm73"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gyf1o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lrjqx"]
+
+[node name="PaperInteractable" type="Node2D"]
+script = ExtResource("1_pb31r")
+
+[node name="Button" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = -48.0
+offset_top = -40.0
+offset_right = 48.0
+offset_bottom = 40.0
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_pb31r")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_stpda")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_clm73")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_gyf1o")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lrjqx")
+script = ExtResource("2_vhuh0")

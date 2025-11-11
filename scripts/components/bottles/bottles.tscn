@@ -1,0 +1,102 @@
+[gd_scene load_steps=10 format=3 uid="uid://c43gkngan5ch1"]
+
+[ext_resource type="Script" uid="uid://p5pq2a2xkh27" path="res://scripts/components/bottles/bottles.gd" id="1_w286a"]
+[ext_resource type="Texture2D" uid="uid://0taj1ff0gh4i" path="res://resources/images/sprites/jar_open.svg" id="2_v48bn"]
+[ext_resource type="Texture2D" uid="uid://dim7u4qaaavf" path="res://resources/images/sprites/jar_lid.svg" id="3_m2pje"]
+[ext_resource type="Texture2D" uid="uid://dm60f5ti3gqgo" path="res://resources/images/sprites/jar_lid_bg.svg" id="4_m2pje"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m2pje"]
+size = Vector2(200, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngag6"]
+size = Vector2(40, 48)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_svmpa"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_m2pje"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w286a"]
+size = Vector2(288, 344)
+
+[node name="Bottles" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_w286a")
+
+[node name="LidSensor" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-64, -224)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LidSensor"]
+position = Vector2(-4, -8)
+shape = SubResource("RectangleShape2D_m2pje")
+debug_color = Color(0.4229048, 0.5969179, 0.26252168, 0.41960785)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LidSensor"]
+position = Vector2(-84, 8)
+shape = SubResource("RectangleShape2D_ngag6")
+debug_color = Color(0.4229048, 0.5969179, 0.26252168, 0.41960785)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="LidSensor"]
+position = Vector2(72, 8)
+shape = SubResource("RectangleShape2D_ngag6")
+debug_color = Color(0.4229048, 0.5969179, 0.26252168, 0.41960785)
+
+[node name="Collider" type="CollisionPolygon2D" parent="."]
+modulate = Color(1, 1, 1, 0.11764706)
+polygon = PackedVector2Array(256, -168, 256, -88, 256, 256, 128, 352, -128, 352, -256, 256, -256, -88, -256, -168, -85, -168, -85, -152, -128, -88, -128, 168, -104, 200, 96, 200, 128, 168, 128, -88, 88, -144, -51, -152, -51, -168)
+
+[node name="Boundary1" type="CollisionShape2D" parent="."]
+position = Vector2(-128, 40)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_svmpa")
+
+[node name="Boundary2" type="CollisionShape2D" parent="."]
+position = Vector2(128, 40)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_svmpa")
+
+[node name="Boundary3" type="CollisionShape2D" parent="."]
+position = Vector2(0, 200)
+shape = SubResource("WorldBoundaryShape2D_svmpa")
+
+[node name="Jar" type="Sprite2D" parent="."]
+modulate = Color(0.101960786, 0.101960786, 0.101960786, 1)
+position = Vector2(0, 24)
+texture = ExtResource("2_v48bn")
+
+[node name="Lid" type="StaticBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-64, -160)
+collision_layer = 2
+collision_mask = 0
+
+[node name="JarLid" type="Sprite2D" parent="Lid"]
+unique_name_in_owner = true
+self_modulate = Color(0.101960786, 0.101960786, 0.101960786, 1)
+z_index = 2
+position = Vector2(64, -16)
+texture = ExtResource("3_m2pje")
+
+[node name="JarLidBg" type="Sprite2D" parent="Lid/JarLid"]
+self_modulate = Color(0.13303253, 0.20272455, 0.31898543, 1)
+z_index = 1
+z_as_relative = false
+texture = ExtResource("4_m2pje")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Lid"]
+position = Vector2(64, 16)
+rotation = -3.1415927
+shape = SubResource("WorldBoundaryShape2D_m2pje")
+
+[node name="TouchArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+disable_mode = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TouchArea"]
+position = Vector2(0, 44)
+shape = SubResource("RectangleShape2D_w286a")
+debug_color = Color(0.64705884, 0.4509804, 0.7019608, 0.11372549)

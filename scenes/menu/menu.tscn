@@ -1,0 +1,252 @@
+[gd_scene load_steps=13 format=3 uid="uid://bsdr2ntqoxu8l"]
+
+[ext_resource type="Script" uid="uid://cheigtpaabp08" path="res://scenes/menu/scripts/data_importer.gd" id="1_klgdb"]
+[ext_resource type="Script" uid="uid://bjs3j1xn3kysa" path="res://scenes/menu/menu.gd" id="1_mcvr8"]
+[ext_resource type="Script" uid="uid://b3asaxerjlaf5" path="res://scenes/menu/scripts/debug/debug_import.gd" id="3_e0arn"]
+[ext_resource type="Theme" uid="uid://cvocwk6x1wj7h" path="res://config/themes/global.tres" id="4_037ec"]
+[ext_resource type="Texture2D" uid="uid://b0f5lxaw3avta" path="res://resources/images/sprites/myarisan_little.png" id="5_r8yej"]
+[ext_resource type="FontFile" uid="uid://xme5aeq8q7r7" path="res://resources/fonts/caskaydia/CaskaydiaCoveNerdFont-Bold.ttf" id="5_y1o0p"]
+[ext_resource type="Script" uid="uid://dd74tqstpe0mn" path="res://scenes/menu/scripts/scroll_container.gd" id="6_t0a87"]
+[ext_resource type="Texture2D" uid="uid://c3gp8hlf1ccbu" path="res://resources/images/sprites/myarisan 2.png" id="7_3y2rt"]
+[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/libs/button/general_button.gd" id="7_qo0fc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1o0p"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 128
+corner_radius_top_right = 128
+corner_radius_bottom_right = 128
+corner_radius_bottom_left = 128
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r8yej"]
+bg_color = Color(0.6872149, 0.68721503, 0.6872149, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 128
+corner_radius_top_right = 128
+corner_radius_bottom_right = 128
+corner_radius_bottom_left = 128
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3y2rt"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 18
+border_width_top = 18
+border_width_right = 18
+border_width_bottom = 18
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 128
+corner_radius_top_right = 128
+corner_radius_bottom_right = 128
+corner_radius_bottom_left = 128
+
+[node name="Menu" type="Node"]
+script = ExtResource("1_mcvr8")
+
+[node name="Scripts" type="Node" parent="."]
+
+[node name="DataImporter" type="Node" parent="Scripts"]
+script = ExtResource("1_klgdb")
+
+[node name="DebugImport" type="Node" parent="Scripts"]
+script = ExtResource("3_e0arn")
+
+[node name="Background" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VFX" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="BG" type="TextureRect" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_3y2rt")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_037ec")
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="Ammount" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+text = "Peserta: 30"
+
+[node name="Separator" type="Control" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Version" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.09985284, 0.09985284, 0.09985284, 0.33)
+theme_override_font_sizes/font_size = 12
+text = "MyArisan 2 - v0.0.1"
+
+[node name="Grid" type="MarginContainer" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("4_037ec")
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 152
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 162
+
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Grid"]
+layout_mode = 2
+mouse_filter = 2
+horizontal_scroll_mode = 0
+script = ExtResource("6_t0a87")
+
+[node name="GridContainer" type="GridContainer" parent="UI/Grid/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+mouse_filter = 2
+theme_override_constants/h_separation = 8
+columns = 5
+
+[node name="DownVBoxContainer" type="VBoxContainer" parent="UI"]
+unique_name_in_owner = true
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -150.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("4_037ec")
+theme_override_constants/separation = -80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DownVBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -2
+
+[node name="AddCenter" type="CenterContainer" parent="UI/DownVBoxContainer/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="AddButton" type="Button" parent="UI/DownVBoxContainer/VBoxContainer/AddCenter"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(118, 118)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_font_sizes/font_size = 64
+theme_override_styles/normal = SubResource("StyleBoxFlat_y1o0p")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r8yej")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3y2rt")
+text = "+"
+script = ExtResource("7_qo0fc")
+
+[node name="TextureRect" type="TextureRect" parent="UI/DownVBoxContainer/VBoxContainer"]
+z_index = 1
+custom_minimum_size = Vector2(52, 22)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("5_r8yej")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="UI/DownVBoxContainer"]
+custom_minimum_size = Vector2(0, 92)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/DownVBoxContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/DownVBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="ClearButton" type="Button" parent="UI/DownVBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 42)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_fonts/font = ExtResource("5_y1o0p")
+text = "  Hapus Semua  "
+script = ExtResource("7_qo0fc")
+
+[node name="Separator" type="Control" parent="UI/DownVBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="StartButton" type="Button" parent="UI/DownVBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 42)
+layout_mode = 2
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_fonts/font = ExtResource("5_y1o0p")
+text = "  Mulai Ngocok  "
+script = ExtResource("7_qo0fc")
+
+[node name="TopMask" type="ColorRect" parent="UI"]
+unique_name_in_owner = true
+visible = false
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.45000002)

@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://dugdwg88q3hsa"]
+
+[ext_resource type="Script" uid="uid://bypvlrjqxsv4k" path="res://scripts/components/paper/paper.gd" id="1_p4p5b"]
+[ext_resource type="Texture2D" uid="uid://dgkrf62s3opvk" path="res://resources/images/sprites/paper.png" id="2_p4p5b"]
+[ext_resource type="Texture2D" uid="uid://ckop232krqxpa" path="res://resources/images/sprites/paper_straw.png" id="3_16yx8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xpw8k"]
+resource_local_to_scene = true
+friction = 0.8
+bounce = 0.1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p4p5b"]
+size = Vector2(112, 16)
+
+[node name="Paper" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_xpw8k")
+contact_monitor = true
+max_contacts_reported = 1
+script = ExtResource("1_p4p5b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p4p5b")
+
+[node name="IconCont" type="Node2D" parent="."]
+
+[node name="Icon" type="Sprite2D" parent="IconCont"]
+unique_name_in_owner = true
+position = Vector2(1.9073486e-06, 0)
+scale = Vector2(0.422, 0.332)
+texture = ExtResource("2_p4p5b")
+
+[node name="Straw" type="Sprite2D" parent="IconCont"]
+unique_name_in_owner = true
+position = Vector2(2.7122496e-06, 0)
+scale = Vector2(0.422, 0.332)
+texture = ExtResource("3_16yx8")
