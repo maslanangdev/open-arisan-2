@@ -27,6 +27,7 @@ static var _paper_cont_scene: PackedScene = preload("uid://f285gc3buqk")
 @onready var _down_cont := %DownVBoxContainer
 @onready var _top_mask := %TopMask
 @onready var _ammount := %Ammount
+@onready var _version := %Version
 @onready var _toggle_music_button := %MusicButton
 
 var _game_scene: PackedScene = load("uid://b5q4vk5sol5pb")
@@ -53,6 +54,7 @@ func _ready() -> void:
 			alert.exit.call_deferred()
 		)
 	)
+	_version.text = "MyArisan 2 - v%s" % App.data.version
 	_toggle_music_button.pressed.connect(Game.toggle_bgm.bind(_toggle_music_button))
 	_toggle_music_button.text = "󰝛" if !Game.is_bgm_on else "󰝚"
 	
