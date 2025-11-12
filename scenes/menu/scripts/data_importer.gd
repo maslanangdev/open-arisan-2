@@ -6,7 +6,9 @@ const F_TEXT := [&"", &"txt", &"conf", &"ini"]
 const F_IMAGE := [&"png", &"jpg", &"jpeg", &"webp"]
 const THEME := preload("res://config/themes/global.tres")
 
-var _loading_scene := load("uid://2pbxy1ndy6xf")
+const _loading_scene := preload("uid://2pbxy1ndy6xf")
+
+var _thread := Thread.new()
 
 @onready var _menu: MainMenu = owner
 @onready var _add_btn: Button = %AddButton
@@ -50,10 +52,15 @@ func _spawn_file_picker() -> void:
 	_file_picker.canceled.connect(_file_picker.queue_free)
 	
 func _files_picked(paths: PackedStringArray) -> void:
-	for path in paths:
-		_process_file(path)
-	_file_picker.queue_free()
-	_remove_loading_screen()
+	if _thread.is_started():
+		_thread.wait_to_finish()
+	_thread.start(func():
+		for path in paths:
+			_process_file(path)
+		_file_picker.queue_free.call_deferred()
+		_remove_loading_screen.call_deferred()
+	)
+	
 
 func _files_picked_web(file_name: String, _file_type: String, base64_data: String) -> void:
 	var extension := file_name.get_extension().to_lower()
@@ -73,13 +80,13 @@ func _files_picked_web(file_name: String, _file_type: String, base64_data: Strin
 		_throw_error(file_name)
 		
 	_file_picker = null
-	_remove_loading_screen()
+	_remove_loading_screen.call_deferred()
 	
 func _process_file(path: StringName) -> void:
 	var extension := path.get_extension().to_lower()
 	
 	if PaperQueue.get_data().size() >= MAX_SIZE:
-		_throw_max_error()
+		_throw_max_error.call_deferred()
 		return
 	if F_TEXT.has(extension):
 		var text := FileAccess.open(path, FileAccess.READ).get_as_text()
@@ -89,10 +96,10 @@ func _process_file(path: StringName) -> void:
 	elif F_IMAGE.has(extension):
 		var image = Image.load_from_file(path)
 		var texture = ImageTexture.create_from_image(image)
-		_menu.file_added.emit(texture)
+		_menu.file_added.emit.call_deferred(texture)
 		
 	else:
-		_throw_error(path)
+		_throw_error.call_deferred(path)
 
 func _process_image_web(data: PackedByteArray, extension: String) -> Image:
 	var image := Image.new()
@@ -114,7 +121,6 @@ func _throw_error(path: StringName) -> void:
 		_error_dialogue = Alert.create("")
 		_error_dialogue.yes.hide()
 		_error_dialogue.no.text = "OK"
-		#_error_dialogue.theme = THEME
 		_error_dialogue.set_meta(META, [path])
 
 	var paths: Array = _error_dialogue.get_meta(META)
@@ -153,5 +159,7 @@ func _create_loading_screen() -> void:
 	set_meta(&"loading", instance)
 	
 func _remove_loading_screen() -> void:
-	if has_meta(&"loading"):
-		get_meta(&"loading").queue_free()
+	(func():
+		if has_meta(&"loading") and is_instance_valid(get_meta(&"loading")):
+			get_meta(&"loading").queue_free()
+	).call_deferred()
