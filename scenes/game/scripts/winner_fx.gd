@@ -19,8 +19,11 @@ func _ready() -> void:
 	WinnerInteractable.static_signals.paper_picked.connect(func(_which: Paper, interacted: bool):
 		GameFX.enable_motion_blur()
 		if !interacted:
-			SFX.create(self, [SFX.playlist.xeno]).no_pitch_change().is_bgm().play_at(53.315).fade_in().fade_out(10.0, 15.0)
-			_add_bgm_info("TheFatRat - Xenogenesis", Color.WHITE)
+			if Game.is_bgm_on:
+				SFX.create(self, [SFX.playlist.xeno]).is_bgm().play_at(53.315).fade_in().fade_out(10.0, 15.0)
+				_add_bgm_info("TheFatRat - Xenogenesis", Color.WHITE)
+			else:
+				SFX.create(self, [SFX.playlist.drum_roll]).no_pitch_change()
 			Game.instance.stop_bgm()
 	)
 	WinnerInteractable.static_signals.paper_scaled_to_zero.connect(func():
@@ -48,11 +51,13 @@ func _ready() -> void:
 		GameFX.show_dark_overlay(true)
 		CameraShaker.new(28.0, 1.0)
 		
+		if !Game.is_bgm_on:
+			SFX.create(self, [SFX.playlist.cymbal]).no_pitch_change().delay(0.1)
 		SFX.create(self, [SFX.playlist.cheer], {&"volume_db": -4.0}).no_pitch_change()
 		SFX.create(self, [SFX.playlist.confetti], {&"volume_db": -4.0}).no_pitch_change()
 		SFX.create(self, [SFX.playlist.rizz], {&"volume_db": -4.0}).no_pitch_change()
 		SFX.create(self, [SFX.playlist.wow]).no_pitch_change()
-		SFX.create(self, [SFX.playlist.crowd], {&"volume_db": -8.0}).no_pitch_change().is_bgm().fade_in(1.0).fade_out(10.0, XENO_FADEOUT)
+		SFX.create(self, [SFX.playlist.crowd], {&"volume_db": -8.0}).no_pitch_change().fade_in(1.0).fade_out(10.0, XENO_FADEOUT)
 
 		_spotlight = spotlight_scene.instantiate()
 		Game.vfx_front_node.add_child(_spotlight)
@@ -71,7 +76,8 @@ func _ready() -> void:
 		get_tree().create_timer(0.5).timeout.connect(GameFX.disable_motion_blur)
 		VFX.Particles.Emoji.remove(which)
 		SFX.get_sfx(self, [SFX.playlist.crowd]).fade_out(5.0)
-		SFX.get_sfx(self, [SFX.playlist.xeno]).fade_out(5.0)
+		if Game.is_bgm_on:
+			SFX.get_sfx(self, [SFX.playlist.xeno]).fade_out(5.0)
 		if !SFX.get_sfx(Game.instance, [SFX.playlist.wallpaper]).stream_player.playing:
 			Game.instance.play_bgm(5.0)
 		if _spotlight != null:

@@ -30,7 +30,9 @@ const playlist := {
 	&"paper_hint": preload("uid://c6ln1xhbik0ws"),
 	
 	&"xeno": preload("uid://d1mq0xwav7eou"),
-	&"wallpaper": preload("uid://clvus7nmw2hob")
+	&"wallpaper": preload("uid://clvus7nmw2hob"),
+	&"drum_roll": preload("uid://dier8e2wlovyk"),
+	&"cymbal": preload("uid://nomcjqym7wfd")
 }
 #"uid://clvus7nmw2hob" wallper
 #uid://bytwt277ibnpw pirate
@@ -114,7 +116,7 @@ func play_at(offset: float) -> SFX:
 		if stream_player != null:
 			if !stream_player.is_inside_tree():
 				await stream_player.tree_entered
-			stream_player.stop()
+			stream_player.stop.call_deferred()
 			stream_player.play.call_deferred(offset)
 	).call()
 	return self
@@ -128,7 +130,7 @@ func stop() -> SFX:
 
 func delay(offset: float) -> SFX:
 	if stream_player != null:
-		stream_player.stop()
+		stream_player.stop.call_deferred()
 		stream_player.get_tree().create_timer(offset, false).timeout.connect(stream_player.play)
 	return self
 	
