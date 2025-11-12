@@ -14,4 +14,8 @@ static var data := {
 const NEXT_SCENE := preload("uid://dlkw23a56je3m")
 
 func _ready() -> void:
+	## request access so it can load the images properly
+	if OS.get_name() == "Android":
+		OS.request_permissions()
+	
 	SceneManager.change_scene.call_deferred(NEXT_SCENE, true)
