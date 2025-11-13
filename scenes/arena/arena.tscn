@@ -1,25 +1,27 @@
 [gd_scene load_steps=7 format=3 uid="uid://d4m8tqnvlochh"]
 
 [ext_resource type="Script" uid="uid://e6nuv1q6ogu1" path="res://scenes/arena/arena.gd" id="1_1qjuf"]
-[ext_resource type="Script" uid="uid://bcdhlgabvvp3g" path="res://scenes/arena/scripts/wall_resizer.gd" id="2_5tue2"]
+[ext_resource type="Script" uid="uid://bcdhlgabvvp3g" path="res://scenes/arena/modules/wall_resizer.gd" id="2_5tue2"]
 [ext_resource type="PackedScene" uid="uid://c43gkngan5ch1" path="res://scripts/components/bottles/bottles.tscn" id="3_aj7ud"]
-[ext_resource type="Script" uid="uid://b8eqj2rxykjvo" path="res://scenes/arena/scripts/paper_initializer.gd" id="3_jx0ua"]
-[ext_resource type="Script" uid="uid://cri5kinck6eps" path="res://scenes/arena/scripts/debug.gd" id="4_asdgj"]
+[ext_resource type="Script" uid="uid://b8eqj2rxykjvo" path="res://scenes/arena/modules/paper_initializer.gd" id="3_jx0ua"]
+[ext_resource type="Script" uid="uid://cri5kinck6eps" path="res://scenes/arena/modules/debug.gd" id="4_asdgj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_asdgj"]
 
 [node name="Arena" type="Node2D"]
 script = ExtResource("1_1qjuf")
 
-[node name="Scripts" type="Node" parent="."]
+[node name="Modules" type="Node" parent="."]
 
-[node name="Debug" type="Node" parent="Scripts"]
+[node name="Debug" type="Node" parent="Modules"]
+
+[node name="Debug" type="Node" parent="Modules/Debug"]
 script = ExtResource("4_asdgj")
 
-[node name="WallResizer" type="Node" parent="Scripts"]
+[node name="WallResizer" type="Node" parent="Modules"]
 script = ExtResource("2_5tue2")
 
-[node name="PaperInitializer" type="Node" parent="Scripts"]
+[node name="PaperInitializer" type="Node" parent="Modules"]
 script = ExtResource("3_jx0ua")
 
 [node name="Papers" type="Node2D" parent="."]

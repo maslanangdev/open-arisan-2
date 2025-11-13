@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://cvocwk6x1wj7h" path="res://config/themes/global.tres" id="1_8u66s"]
 [ext_resource type="Script" uid="uid://bdh7ke80ck86k" path="res://scripts/components/ui/inspector/inspector.gd" id="1_t033l"]
 [ext_resource type="Texture2D" uid="uid://dgkrf62s3opvk" path="res://resources/images/sprites/paper.png" id="2_8u66s"]
-[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/libs/button/general_button.gd" id="3_72us0"]
+[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/modules/button/general_button.gd" id="3_72us0"]
 [ext_resource type="FontFile" uid="uid://xme5aeq8q7r7" path="res://resources/fonts/caskaydia/CaskaydiaCoveNerdFont-Bold.ttf" id="4_wc7lp"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wc7lp"]

@@ -1,6 +1,6 @@
 class_name UIPaperContainer extends CenterContainer
 
-class static_signals:
+class static_signal:
 	@warning_ignore("unused_signal")
 	signal inspector_activated
 	@warning_ignore("unused_signal")
@@ -8,7 +8,7 @@ class static_signals:
 
 static var active_container: UIPaperContainer
 static var buffered_container: UIPaperContainer
-static var inspector_signals := static_signals.new()
+static var static_signals := static_signal.new()
 
 var inspect: UIInspector
 var is_mouse_inside := false
@@ -63,7 +63,7 @@ func _activate_inspector() -> void:
 		inspect.activate()
 		active_container = self
 		_anim_pop()
-		inspector_signals.inspector_activated.emit()
+		static_signals.inspector_activated.emit()
 
 func _create_inspector() -> void:
 	inspect = _inspect_scene.instantiate()
@@ -83,7 +83,7 @@ func _remove_inspector() -> void:
 	AutoTween.new(inspect, &"scale", Vector2(0.8, 0.8), 0.33)
 	AutoTween.new(inspect, &"modulate:a", 0.0, 0.33).finished.connect(inspect.queue_free)
 	active_container = null
-	inspector_signals.inspector_deactivated.emit()
+	static_signals.inspector_deactivated.emit()
 
 func _poke_buffered() -> void:
 	if buffered_container != null and buffered_container.is_mouse_inside:

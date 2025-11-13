@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cdc5liqmovpyb" path="res://scripts/components/ui/winner_previewer_ui/winner_previewer_ui.gd" id="1_qehiy"]
 [ext_resource type="Theme" uid="uid://cvocwk6x1wj7h" path="res://config/themes/global.tres" id="1_s8jua"]
-[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/libs/button/general_button.gd" id="3_7t6lu"]
+[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/modules/button/general_button.gd" id="3_7t6lu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_s8jua"]
 bg_color = Color(1, 1, 1, 1)

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dbv8tnf05u4v7" path="res://scripts/components/ui/winner_spotlight/spotlight/spotlight.tscn" id="1_0as71"]
 [ext_resource type="Script" uid="uid://ccqj78in4objx" path="res://scripts/components/ui/winner_spotlight/winner_spotlight.gd" id="1_5hft1"]
-[ext_resource type="PackedScene" uid="uid://clgvfbdav2kif" path="res://scripts/libs/vfx/particles/confetti/confetti_2.tscn" id="3_tjrjq"]
+[ext_resource type="PackedScene" uid="uid://clgvfbdav2kif" path="res://scripts/modules/vfx/particles/confetti/confetti_2.tscn" id="3_tjrjq"]
 
 [node name="WinnerSpotlight" type="VBoxContainer"]
 anchors_preset = 15

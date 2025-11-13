@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjdxpf106m1gi"]
-
-[ext_resource type="Script" uid="uid://bhcjg7ncm2pvv" path="res://scripts/libs/vfx/square_highlight/square_highlight.gd" id="1_8mrim"]
-
-[node name="SquareHighlight" type="Node2D"]
-script = ExtResource("1_8mrim")

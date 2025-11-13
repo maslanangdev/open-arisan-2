@@ -1,11 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhoyf86d6ufjl"]
+[gd_scene load_steps=8 format=3 uid="uid://bhoyf86d6ufjl"]
 
 [ext_resource type="Theme" uid="uid://cvocwk6x1wj7h" path="res://config/themes/global.tres" id="1_di4fj"]
 [ext_resource type="Script" uid="uid://dew7mdco0akis" path="res://scripts/components/ui/previewer/previewer.gd" id="1_encsf"]
-[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/libs/button/general_button.gd" id="3_jy6jr"]
+[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/modules/button/general_button.gd" id="3_jy6jr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_di4fj"]
 bg_color = Color(0.12315822, 0.11774104, 0.1680183, 0.75000006)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jy6jr"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 12
+border_width_top = 12
+border_width_right = 12
+border_width_bottom = 12
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 128
+corner_radius_top_right = 128
+corner_radius_bottom_right = 128
+corner_radius_bottom_left = 128
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qriwu"]
+bg_color = Color(0.6872149, 0.68721503, 0.6872149, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 128
+corner_radius_top_right = 128
+corner_radius_bottom_right = 128
+corner_radius_bottom_left = 128
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mgsif"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+corner_radius_top_left = 128
+corner_radius_top_right = 128
+corner_radius_bottom_right = 128
+corner_radius_bottom_left = 128
 
 [node name="Previewer" type="PanelContainer"]
 anchors_preset = 15
@@ -57,10 +93,14 @@ mouse_filter = 2
 
 [node name="PrevButton" type="Button" parent="MarginContainer/HBoxContainer/BL"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
+size_flags_vertical = 4
 focus_mode = 0
-mouse_filter = 1
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_jy6jr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qriwu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mgsif")
 text = "<"
 script = ExtResource("3_jy6jr")
 
@@ -74,10 +114,14 @@ mouse_filter = 2
 
 [node name="NextButton" type="Button" parent="MarginContainer/HBoxContainer/BR"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
+size_flags_vertical = 4
 focus_mode = 0
-mouse_filter = 1
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_jy6jr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qriwu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mgsif")
 text = ">"
 script = ExtResource("3_jy6jr")
 
@@ -89,11 +133,13 @@ alignment = 2
 
 [node name="ExitButton" type="Button" parent="MarginContainer/Control"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(64, 64)
+custom_minimum_size = Vector2(72, 72)
 layout_mode = 2
-size_flags_horizontal = 4
 size_flags_vertical = 4
 focus_mode = 0
-mouse_filter = 1
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_jy6jr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_qriwu")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mgsif")
 text = ""
 script = ExtResource("3_jy6jr")

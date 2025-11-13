@@ -1,6 +1,5 @@
 class_name WinnerInteractable extends Node2D
 
-static var _scene := preload("uid://3ybh7v3obbk0")
 static var static_signals := _static_signals.new()
 
 class _static_signals:
@@ -20,7 +19,8 @@ var _viewport_center: Vector2:
 	get: return get_viewport().get_visible_rect().get_center()
 
 static func create(pair: Paper) -> WinnerInteractable:
-	var instance: WinnerInteractable = _scene.instantiate()
+	var scene := load("uid://3ybh7v3obbk0")
+	var instance: WinnerInteractable = scene.instantiate()
 	instance.paper_pair = pair
 	Arena.others_nodes.add_child(instance)
 	instance.global_transform = pair.global_transform

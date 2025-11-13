@@ -1,15 +1,17 @@
-[gd_scene load_steps=19 format=4 uid="uid://b5q4vk5sol5pb"]
+[gd_scene load_steps=21 format=4 uid="uid://b5q4vk5sol5pb"]
 
 [ext_resource type="Script" uid="uid://camh0v5gtnqs8" path="res://scenes/game/game.gd" id="1_sul5r"]
 [ext_resource type="Theme" uid="uid://cvocwk6x1wj7h" path="res://config/themes/global.tres" id="2_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://d4m8tqnvlochh" path="res://scenes/arena/arena.tscn" id="2_7h61r"]
-[ext_resource type="Script" uid="uid://c2oeqkh67nh2k" path="res://scenes/game/scripts/motion_blur.gd" id="3_87uf6"]
-[ext_resource type="Script" uid="uid://c56mfy7gsrbwe" path="res://scenes/game/scripts/winner_fx.gd" id="3_bdhmt"]
+[ext_resource type="Script" uid="uid://c2oeqkh67nh2k" path="res://scenes/game/modules/motion_blur.gd" id="3_87uf6"]
+[ext_resource type="Script" uid="uid://c56mfy7gsrbwe" path="res://scenes/game/modules/winner_fx.gd" id="3_bdhmt"]
 [ext_resource type="FontFile" uid="uid://xme5aeq8q7r7" path="res://resources/fonts/caskaydia/CaskaydiaCoveNerdFont-Bold.ttf" id="3_kelw5"]
-[ext_resource type="Script" uid="uid://dmwgbc1gslyi4" path="res://scenes/game/scripts/game_fx.gd" id="4_87uf6"]
+[ext_resource type="Script" uid="uid://dmwgbc1gslyi4" path="res://scenes/game/modules/game_fx.gd" id="4_87uf6"]
 [ext_resource type="Texture2D" uid="uid://fkcan8e1j2bi" path="res://resources/images/sprites/bg.png" id="5_2a8rs"]
+[ext_resource type="Script" uid="uid://ba0gcnaokjk65" path="res://scenes/game/modules/bgm_manager.gd" id="5_kp23o"]
 [ext_resource type="Script" uid="uid://ddolayaaytru" path="res://scripts/components/camera/camera.gd" id="5_lfrn8"]
-[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/libs/button/general_button.gd" id="10_4j704"]
+[ext_resource type="Script" uid="uid://biax0qkuixquj" path="res://scenes/game/modules/menu_ui.gd" id="6_5jirj"]
+[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/modules/button/general_button.gd" id="10_4j704"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2a8rs"]
 texture = ExtResource("5_2a8rs")
@@ -65,16 +67,22 @@ corner_radius_bottom_left = 128
 [node name="Game" type="Node"]
 script = ExtResource("1_sul5r")
 
-[node name="Scripts" type="Node" parent="."]
+[node name="Modules" type="Node" parent="."]
 
-[node name="MotionBlur" type="Node" parent="Scripts"]
+[node name="MotionBlur" type="Node" parent="Modules"]
 script = ExtResource("3_87uf6")
 
-[node name="WinnerFX" type="Node" parent="Scripts"]
+[node name="WinnerFX" type="Node" parent="Modules"]
 script = ExtResource("3_bdhmt")
 
-[node name="GameFX" type="Node" parent="Scripts"]
+[node name="GameFX" type="Node" parent="Modules"]
 script = ExtResource("4_87uf6")
+
+[node name="BGMManager" type="Node" parent="Modules"]
+script = ExtResource("5_kp23o")
+
+[node name="MenuUI" type="Node" parent="Modules"]
+script = ExtResource("6_5jirj")
 
 [node name="Background" type="CanvasLayer" parent="."]
 unique_name_in_owner = true

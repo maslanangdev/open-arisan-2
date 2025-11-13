@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://3ybh7v3obbk0"]
 
 [ext_resource type="Script" uid="uid://byw26j7nlkkx0" path="res://scripts/components/ui/winner_interactable/winner_interactable.gd" id="1_pb31r"]
-[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/libs/button/general_button.gd" id="2_vhuh0"]
+[ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/modules/button/general_button.gd" id="2_vhuh0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pb31r"]
 
