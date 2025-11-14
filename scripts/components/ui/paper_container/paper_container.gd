@@ -71,8 +71,6 @@ func _create_inspector() -> void:
 	inspect.modulate.a = 0.75
 	inspect.paper_container_pair = self
 	inspect.global_position = _center.global_position
-	if _paper.queue_data.type == PaperQueue.TYPE.TEXTURE:
-		inspect.image = _paper.queue_data.content
 	MainMenu.ui_node.add_child(inspect)
 	inspect.animate_in()
 	_anim_shake()

@@ -2,8 +2,7 @@ extends Node2D
 
 ## Spawn all effects so they are saved on the caches
 
-const NEXT_SCENE := preload("uid://bsdr2ntqoxu8l")
-
+var _next_scene := load("uid://bsdr2ntqoxu8l")
 var _sprite_2d := Sprite2D.new()
 
 func _ready() -> void:
@@ -12,22 +11,22 @@ func _ready() -> void:
 		c.call()
 		await get_tree().physics_frame
 	await get_tree().create_timer(1.0).timeout
-	SceneManager.change_scene(NEXT_SCENE, true)
+	SceneManager.change_scene(_next_scene, true)
 	
 func _particles() -> void:
 	# BGM POPUP
-	add_child(preload("uid://d2paoku5bjocl").instantiate())
+	add_child(load("uid://d2paoku5bjocl").instantiate())
 	# WINNER INTERACTABLE
 	#add_child(preload("uid://3ybh7v3obbk0").instantiate())
 	WinnerInteractable.create(Paper.new())
 	# WINNER PREVIEWER
-	add_child(preload("uid://bsygsbwamwn1k").instantiate())
+	add_child(load("uid://bsygsbwamwn1k").instantiate())
 	# WINNER SPOTLIGHT
-	add_child(preload("uid://dhga6l105rwpq").instantiate())
+	add_child(load("uid://dhga6l105rwpq").instantiate())
 	# CONFETTI PACK
-	add_child(preload("uid://damlvbxf1ikxo").instantiate())
+	add_child(load("uid://damlvbxf1ikxo").instantiate())
 	# CONFETTI RAIN
-	add_child(preload("uid://ccc8qr6gny81l").instantiate())
+	add_child(load("uid://ccc8qr6gny81l").instantiate())
 	
 func _vfxs() -> void:
 	VFX.Explosion.CircularExplosion.new(Vector2.ZERO)

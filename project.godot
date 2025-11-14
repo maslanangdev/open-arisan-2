@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="MyArisan 2"
-config/version="0.0.2"
+config/version="0.0.3"
 run/main_scene="uid://dvnx03d746kdn"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 boot_splash/bg_color=Color(1, 1, 1, 1)
@@ -61,7 +61,7 @@ Grab={
 [physics]
 
 2d/run_on_separate_thread=true
-common/physics_ticks_per_second=280
+common/physics_ticks_per_second=200
 common/max_physics_steps_per_frame=32
 common/physics_jitter_fix=0.0
 2d/physics_engine="GodotPhysics2D"

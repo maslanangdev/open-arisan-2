@@ -1,9 +1,9 @@
 extends Node
 
-const confetti_pack_scene := preload("uid://damlvbxf1ikxo")
-const confetti_rain_scene := preload("uid://ccc8qr6gny81l")
-const spotlight_scene := preload("uid://dhga6l105rwpq")
-const bgm_popup_scene := preload("uid://d2paoku5bjocl")
+static var confetti_pack_scene := load("uid://damlvbxf1ikxo")
+static var confetti_rain_scene := load("uid://ccc8qr6gny81l")
+static var spotlight_scene := load("uid://dhga6l105rwpq")
+static var bgm_popup_scene := load("uid://d2paoku5bjocl")
 
 const XENO_FADEOUT := 5.0
 
@@ -107,7 +107,7 @@ func _spot_light_remove() -> void:
 
 
 func _add_bgm_info(what: String, color: Color, alpha := 0.7) -> void:
-	var bgm_info := bgm_popup_scene.instantiate()
+	var bgm_info = bgm_popup_scene.instantiate()
 	color.a = alpha
 	bgm_info.text = what
 	bgm_info.color = color

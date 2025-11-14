@@ -11,11 +11,11 @@ static var data := {
 	"android_build": OS.get_name().contains("Android"),
 }
 
-const NEXT_SCENE := preload("uid://dlkw23a56je3m")
+var _next_scene := load("uid://dlkw23a56je3m")
 
 func _ready() -> void:
 	## request access so it can load the images properly
-	if OS.get_name() == "Android":
+	if data.android_build:
 		OS.request_permissions()
 	
-	SceneManager.change_scene.call_deferred(NEXT_SCENE, true)
+	SceneManager.change_scene.call_deferred(_next_scene, true)

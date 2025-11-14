@@ -13,10 +13,9 @@ var yes: Button:
 var no: Button:
 	get: return %No
 
-static var _alert_scene := preload("uid://1w8nu40os8cu")
-
 static func create(content: String) -> Alert:
-	var new_alert: Alert = _alert_scene.instantiate()
+	var alert_scene := load("uid://1w8nu40os8cu")
+	var new_alert: Alert = alert_scene.instantiate()
 	new_alert.set_text(content)
 	if MainMenu.instance != null:
 		MainMenu.ui_node.add_child(new_alert)
@@ -32,6 +31,8 @@ func set_text(_str: String) -> void:
 func exit() -> void:
 	get_tree().paused = prev_physics
 	on_out.emit()
+	for b in [yes, no]:
+		if is_instance_valid(b): b.disabled = true
 	await Animate.fade_out(self).finished
 	queue_free()
 

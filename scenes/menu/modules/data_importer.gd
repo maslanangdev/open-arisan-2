@@ -1,12 +1,15 @@
 extends Node
 
-const MAX_SIZE := 100
+const MAX_SIZE := 80
+const SPLIT_STRING := "\n"
 
-const F_TEXT := [] #[&"", &"txt", &"conf", &"ini"]
+const F_TEXT := [&"", &"txt", &"conf", &"ini"]
 const F_IMAGE := [&"png", &"jpg", &"jpeg", &"webp"]
 const THEME := preload("res://config/themes/global.tres")
 
-const _loading_scene := preload("uid://2pbxy1ndy6xf")
+signal error_max_size
+
+static var _loading_scene := load("uid://2pbxy1ndy6xf")
 
 var _thread := Thread.new()
 
@@ -15,6 +18,20 @@ var _thread := Thread.new()
 var _file_picker: Variant
 var _error_dialogue: Alert
 var _error_max_dialogue: Alert
+
+func process_text(text: String) -> void:
+	var spliced := text.split(SPLIT_STRING)
+	var ammount := PaperQueue.get_data().size()
+	await get_tree().process_frame
+	for s in spliced:
+		await get_tree().process_frame
+		if ammount >= MAX_SIZE:
+			_throw_max_error.call_deferred()
+			return
+		if s.is_empty():
+			continue
+		_menu.file_added.emit.call_deferred(s)
+		ammount += 1
 
 func _ready() -> void:
 	owner.spawn_file_picker.connect(_spawn_file_picker)
@@ -56,6 +73,7 @@ func _files_picked(paths: PackedStringArray) -> void:
 	_thread.start(func():
 		for path in paths:
 			_process_file(path)
+			await get_tree().process_frame
 		_file_picker.queue_free.call_deferred()
 		_remove_loading_screen.call_deferred()
 	)
@@ -69,8 +87,8 @@ func _files_picked_web(file_name: String, _file_type: String, base64_data: Strin
 		_throw_max_error()
 		return
 	if F_TEXT.has(extension):
-		_menu.file_added.emit(raw_data.get_string_from_multibyte_char())
-		
+		var text := raw_data.get_string_from_multibyte_char()
+		process_text.call_deferred(text)
 	elif F_IMAGE.has(extension):
 		var image := _process_image_web(raw_data, extension)
 		var texture := ImageTexture.create_from_image(image)
@@ -89,9 +107,7 @@ func _process_file(path: StringName) -> void:
 		return
 	if F_TEXT.has(extension):
 		var text := FileAccess.open(path, FileAccess.READ).get_as_text()
-		var spliced := text.split("\n")
-		for s in spliced:
-			if !s.is_empty(): _menu.file_added.emit(s)
+		process_text.call_deferred(text)
 	elif F_IMAGE.has(extension):
 		var image = Image.load_from_file(path)
 		var texture = ImageTexture.create_from_image(image)
@@ -143,14 +159,7 @@ func _throw_error(path: StringName) -> void:
 			else: out += ", %s" % ext
 		return out
 	).call()
-	#_error_dialogue.title = &"Error"
 	_error_dialogue.set_text("Error:\nExtension '%s'\n%s not supported.\n\nCannot load: \n%s\n" % [exts, "is" if exts.split(",").size() == 1 else "are",strs])
-
-func _throw_max_error() -> void:
-	if _error_max_dialogue == null:
-		_error_max_dialogue = Alert.create("Error: Peserta maksimal %d." % MAX_SIZE)
-		_error_max_dialogue.yes.hide()
-		_error_max_dialogue.no.text = "OK"
 
 func _create_loading_screen() -> void:
 	var instance: PanelContainer = _loading_scene.instantiate()
@@ -162,3 +171,10 @@ func _remove_loading_screen() -> void:
 		if has_meta(&"loading") and is_instance_valid(get_meta(&"loading")):
 			get_meta(&"loading").queue_free()
 	).call_deferred()
+
+func _throw_max_error() -> void:
+	if _error_max_dialogue == null:
+		_error_max_dialogue = Alert.create("Error: Peserta maksimal %d." % MAX_SIZE)
+		_error_max_dialogue.yes.hide()
+		_error_max_dialogue.no.text = "OK"
+		error_max_size.emit()

@@ -2,7 +2,6 @@ extends Node
 
 func _ready() -> void:
 	play_bgm.call_deferred()
-	tree_exiting.connect(stop_bgm)
 
 func toggle_bgm(button: Button) -> void:
 	Game.is_bgm_on = !Game.is_bgm_on

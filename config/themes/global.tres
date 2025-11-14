@@ -2,7 +2,12 @@
 
 [ext_resource type="FontFile" uid="uid://bsao0uawuuu3o" path="res://resources/fonts/caskaydia/CaskaydiaCoveNerdFont-Regular.ttf" id="1_x51yq"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vbpun"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jx64c"]
+bg_color = Color(1, 1, 1, 0.19607843)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6ah4x"]
 
@@ -74,7 +79,7 @@ Button/colors/font_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
 Button/colors/font_focus_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
 Button/colors/font_hover_color = Color(0.3854925, 0.38549247, 0.38549247, 1)
 Button/colors/font_pressed_color = Color(0.75819147, 0.7581919, 0.7581917, 1)
-Button/styles/disabled = SubResource("StyleBoxEmpty_vbpun")
+Button/styles/disabled = SubResource("StyleBoxFlat_jx64c")
 Button/styles/focus = SubResource("StyleBoxEmpty_6ah4x")
 Button/styles/hover = SubResource("StyleBoxFlat_x51yq")
 Button/styles/normal = SubResource("StyleBoxFlat_yr12c")

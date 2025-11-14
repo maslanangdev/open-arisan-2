@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bsdr2ntqoxu8l"]
+[gd_scene load_steps=20 format=3 uid="uid://bsdr2ntqoxu8l"]
 
 [ext_resource type="Script" uid="uid://cheigtpaabp08" path="res://scenes/menu/modules/data_importer.gd" id="1_klgdb"]
 [ext_resource type="Script" uid="uid://bjs3j1xn3kysa" path="res://scenes/menu/menu.gd" id="1_mcvr8"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://dd74tqstpe0mn" path="res://scenes/menu/modules/scroll_container.gd" id="6_t0a87"]
 [ext_resource type="Texture2D" uid="uid://c3gp8hlf1ccbu" path="res://resources/images/sprites/myarisan 2.png" id="7_3y2rt"]
 [ext_resource type="Script" uid="uid://c74uhqwujehas" path="res://scripts/modules/button/general_button.gd" id="7_qo0fc"]
+[ext_resource type="PackedScene" uid="uid://blbtgy1lubmj4" path="res://scripts/components/text_to_texture/text_to_texture.tscn" id="7_y4i35"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qo0fc"]
 
@@ -66,6 +67,7 @@ script = ExtResource("1_mcvr8")
 script = ExtResource("3_e0arn")
 
 [node name="DataImporter" type="Node" parent="Modules"]
+unique_name_in_owner = true
 script = ExtResource("1_klgdb")
 
 [node name="GridResizer" type="Node" parent="Modules"]
@@ -76,6 +78,11 @@ script = ExtResource("5_f2fum")
 
 [node name="PaperUIInteract" type="Node" parent="Modules"]
 script = ExtResource("6_kaijy")
+
+[node name="OutOfBounds" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextToTexture" parent="OutOfBounds" instance=ExtResource("7_y4i35")]
 
 [node name="Background" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
@@ -194,8 +201,7 @@ mouse_filter = 2
 theme_override_constants/h_separation = 8
 columns = 5
 
-[node name="DownVBoxContainer" type="VBoxContainer" parent="UI"]
-unique_name_in_owner = true
+[node name="Down" type="BoxContainer" parent="UI"]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -205,19 +211,26 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+alignment = 2
+
+[node name="DownVBoxContainer" type="VBoxContainer" parent="UI/Down"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource("4_037ec")
 theme_override_constants/separation = -80
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/DownVBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Down/DownVBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = -2
 
-[node name="AddCenter" type="CenterContainer" parent="UI/DownVBoxContainer/VBoxContainer"]
-z_index = 1
+[node name="AddCenter" type="CenterContainer" parent="UI/Down/DownVBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="AddButton" type="Button" parent="UI/DownVBoxContainer/VBoxContainer/AddCenter"]
+[node name="AddButton" type="Button" parent="UI/Down/DownVBoxContainer/VBoxContainer/AddCenter"]
 unique_name_in_owner = true
+z_index = 1
 custom_minimum_size = Vector2(118, 118)
 layout_mode = 2
 size_flags_vertical = 4
@@ -229,7 +242,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_3y2rt")
 text = "+"
 script = ExtResource("7_qo0fc")
 
-[node name="TextureRect" type="TextureRect" parent="UI/DownVBoxContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="UI/Down/DownVBoxContainer/VBoxContainer"]
 z_index = 1
 custom_minimum_size = Vector2(52, 22)
 layout_mode = 2
@@ -239,12 +252,12 @@ texture = ExtResource("5_r8yej")
 expand_mode = 2
 stretch_mode = 5
 
-[node name="PanelContainer" type="PanelContainer" parent="UI/DownVBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="UI/Down/DownVBoxContainer"]
 custom_minimum_size = Vector2(0, 92)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/DownVBoxContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Down/DownVBoxContainer/PanelContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 32
@@ -252,12 +265,12 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 16
 
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/DownVBoxContainer/PanelContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Down/DownVBoxContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 alignment = 1
 
-[node name="ClearButton" type="Button" parent="UI/DownVBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="ClearButton" type="Button" parent="UI/Down/DownVBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 42)
 layout_mode = 2
@@ -267,12 +280,12 @@ theme_override_fonts/font = ExtResource("5_y1o0p")
 text = "  Hapus Semua  "
 script = ExtResource("7_qo0fc")
 
-[node name="Separator" type="Control" parent="UI/DownVBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="Separator" type="Control" parent="UI/Down/DownVBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="StartButton" type="Button" parent="UI/DownVBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
+[node name="StartButton" type="Button" parent="UI/Down/DownVBoxContainer/PanelContainer/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 42)
 layout_mode = 2

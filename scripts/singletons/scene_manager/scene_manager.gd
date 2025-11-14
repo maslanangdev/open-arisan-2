@@ -6,7 +6,7 @@ signal finished
 var is_transitioning := false
 
 #var loading_screen_path := preload("res://scripts/scene_manager/loading_screen.tscn")
-var transition_path := preload("uid://dqr58vy7jg1yl")
+static var transition_path := load("uid://dqr58vy7jg1yl")
 
 func change_scene(target_scene: PackedScene, instant := false, horizontal := false, invert := false, circular := false, delay := 0.01) -> void:
 	var path := target_scene.get_path()

@@ -73,8 +73,7 @@ func _update_content(animate := true, dir: int = 1) -> void:
 			AutoTween.new(dup, &"global_position", init_pos - tgt, DUR).finished.connect(dup.queue_free)
 			AutoTween.new(_text_rect, &"global_position", init_pos, DUR).from(init_pos + tgt)
 		).call_deferred()
-	if _paper_data.type == PaperQueue.TYPE.TEXTURE:
-		_text_rect.texture = _paper_data.content
+	_text_rect.texture = _paper_data.content
 		
 func _animate_in() -> void:
 	const DUR := 0.5

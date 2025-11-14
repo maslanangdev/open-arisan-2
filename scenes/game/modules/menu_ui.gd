@@ -23,6 +23,7 @@ func _ready() -> void:
 		else: Bottle.instance.close_lid()
 	)
 	_reset_button.pressed.connect(func():
+		Game.stop_bgm()
 		get_tree().reload_current_scene()
 	)
 	_toggle_menu_button.pressed.connect(func():

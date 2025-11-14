@@ -5,11 +5,14 @@ var parent: Node
 func _ready() -> void:
 	if is_instance_valid(Game.instance):
 		parent = Game.instance
-	else:
+	elif is_instance_valid(MainMenu.instance):
 		parent = MainMenu.instance
-	mouse_entered.connect(func():
-		SFX.create(parent, [SFX.playlist.button_hover]).no_pitch_change().is_ui()
-	)
+	else:
+		parent = self
+	if !App.data.android_build:
+		mouse_entered.connect(func():
+			if !disabled: SFX.create(parent, [SFX.playlist.button_hover]).no_pitch_change().is_ui()
+		)
 	pressed.connect(func():
 		SFX.create(parent, [SFX.playlist.button_click], {&"volume_db": -5.0}).no_pitch_change().is_ui()
 	)

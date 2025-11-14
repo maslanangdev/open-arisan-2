@@ -27,10 +27,8 @@ func _process_file(path: StringName) -> void:
 		_create_object(texture)
 
 func _create_object(data: Variant, append_data := true) -> void:
-	var type := PaperQueue.TYPE.TEXTURE if data is ImageTexture else PaperQueue.TYPE.STRING
 	var queue_data := {
 		&"id": null,
-		&"type": type,
 		&"content": data,
 		&"color": _get_random_color()
 	}

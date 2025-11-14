@@ -1,7 +1,6 @@
 class_name UIInspector extends Control
 
 var paper_container_pair: UIPaperContainer
-var image: ImageTexture
 var paper_pair: Paper
 
 @onready var inspect_container: VBoxContainer = %InspectContainer
@@ -39,7 +38,7 @@ func animate_in() -> void:
 
 func _ready() -> void:
 	_preview_button.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_preview.texture = image
+	_preview.texture = paper_pair.queue_data.content
 	_delete_button.pressed.connect(_delete)
 	_preview_button.pressed.connect(UIPreviewer.show_previewer.bind(paper_pair.queue_data))
 	_preview_button.pressed.connect(_delete_duplicate)

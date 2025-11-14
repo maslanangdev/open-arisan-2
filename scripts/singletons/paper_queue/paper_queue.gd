@@ -2,11 +2,8 @@ extends Node
 
 signal data_changed
 
-enum TYPE {TEXTURE, STRING}
-
 var _data := [{
 	&"id": null,
-	&"type": TYPE.STRING,
 	&"content": null,
 	&"color": Color.WHITE,
 }]

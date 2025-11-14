@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://blbtgy1lubmj4"]
+
+[ext_resource type="Theme" uid="uid://cvocwk6x1wj7h" path="res://config/themes/global.tres" id="1_8us2s"]
+[ext_resource type="Script" uid="uid://dthuge2xyl3x" path="res://scripts/components/text_to_texture/text_to_texture.gd" id="2_ms8ud"]
+[ext_resource type="Texture2D" uid="uid://b0oxiqd8575cr" path="res://resources/images/sprites/paper_texture.png" id="3_e0rxf"]
+[ext_resource type="FontFile" uid="uid://xme5aeq8q7r7" path="res://resources/fonts/caskaydia/CaskaydiaCoveNerdFont-Bold.ttf" id="4_ckgtx"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e0rxf"]
+texture = ExtResource("3_e0rxf")
+
+[node name="TextToTexture" type="BoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("2_ms8ud")
+
+[node name="ViewportCont" type="SubViewportContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+mouse_filter = 2
+theme = ExtResource("1_8us2s")
+
+[node name="SubViewport" type="SubViewport" parent="ViewportCont"]
+unique_name_in_owner = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(720, 360)
+render_target_update_mode = 4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="ViewportCont/SubViewport"]
+
+[node name="MarginContainer" type="MarginContainer" parent="ViewportCont/SubViewport/CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_8us2s")
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="PanelContainer" type="PanelContainer" parent="ViewportCont/SubViewport/CanvasLayer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("1_8us2s")
+theme_override_styles/panel = SubResource("StyleBoxTexture_e0rxf")
+
+[node name="MarginContainer" type="MarginContainer" parent="ViewportCont/SubViewport/CanvasLayer/MarginContainer/PanelContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="Label" type="RichTextLabel" parent="ViewportCont/SubViewport/CanvasLayer/MarginContainer/PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/default_color = Color(0.101960786, 0.101960786, 0.101960786, 1)
+theme_override_fonts/normal_font = ExtResource("4_ckgtx")
+theme_override_font_sizes/normal_font_size = 42
+text = "Lorem Ipsum"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
