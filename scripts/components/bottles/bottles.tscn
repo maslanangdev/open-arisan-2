@@ -76,16 +76,13 @@ collision_mask = 0
 
 [node name="JarLid" type="Sprite2D" parent="Lid"]
 unique_name_in_owner = true
-self_modulate = Color(0.101960786, 0.101960786, 0.101960786, 1)
-z_index = 2
-position = Vector2(64, -16)
-texture = ExtResource("3_m2pje")
-
-[node name="JarLidBg" type="Sprite2D" parent="Lid/JarLid"]
 self_modulate = Color(0.13303253, 0.20272455, 0.31898543, 1)
-z_index = 1
-z_as_relative = false
+position = Vector2(64, -16)
 texture = ExtResource("4_m2pje")
+
+[node name="JarLidLine" type="Sprite2D" parent="Lid/JarLid"]
+self_modulate = Color(0.101960786, 0.101960786, 0.101960786, 1)
+texture = ExtResource("3_m2pje")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Lid"]
 position = Vector2(64, 16)

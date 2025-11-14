@@ -37,7 +37,7 @@ func process_text(text: String) -> void:
 
 func _ready() -> void:
 	owner.spawn_file_picker.connect(_spawn_file_picker)
-	
+
 func _spawn_file_picker() -> void:
 	if _file_picker != null:
 		return

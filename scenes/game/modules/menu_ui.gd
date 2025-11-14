@@ -51,6 +51,8 @@ func _ready() -> void:
 	_hide_menu.call_deferred()
 
 func _input(event: InputEvent) -> void:
+	if SceneManager.is_transitioning:
+		return
 	if event.is_action_pressed(&"Grab") and !_is_mouse_inside and _is_menu_shown:
 		_toggle_menu_button.pressed.emit()
 

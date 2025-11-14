@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://bcdhlgabvvp3g" path="res://scenes/arena/modules/wall_resizer.gd" id="2_5tue2"]
 [ext_resource type="PackedScene" uid="uid://c43gkngan5ch1" path="res://scripts/components/bottles/bottles.tscn" id="3_aj7ud"]
 [ext_resource type="Script" uid="uid://b8eqj2rxykjvo" path="res://scenes/arena/modules/paper_initializer.gd" id="3_jx0ua"]
-[ext_resource type="Script" uid="uid://cri5kinck6eps" path="res://scenes/arena/modules/debug.gd" id="4_asdgj"]
+[ext_resource type="Script" uid="uid://ud67wq2m7j6i" path="res://scenes/arena/modules/paper_mask_transformer.gd" id="4_asdgj"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_asdgj"]
 
@@ -13,26 +13,23 @@ script = ExtResource("1_1qjuf")
 
 [node name="Modules" type="Node" parent="."]
 
-[node name="Debug" type="Node" parent="Modules"]
-
-[node name="Debug" type="Node" parent="Modules/Debug"]
-script = ExtResource("4_asdgj")
-
 [node name="WallResizer" type="Node" parent="Modules"]
 script = ExtResource("2_5tue2")
 
 [node name="PaperInitializer" type="Node" parent="Modules"]
 script = ExtResource("3_jx0ua")
 
-[node name="Papers" type="Node2D" parent="."]
+[node name="PaperMaskTransformer" type="Node" parent="Modules"]
+script = ExtResource("4_asdgj")
 
-[node name="Pools" type="Node2D" parent="."]
+[node name="Papers" type="Polygon2D" parent="."]
+clip_children = 1
+polygon = PackedVector2Array(-136, -80, -120, -112, -88, -152, -136, -152, -136, -232, 24, -232, 120, -112, 136, -80, 136, 176, 128, 192, 104, 208, -96, 208, -120, 200, -136, 176)
 
 [node name="Bottles" type="Node2D" parent="."]
 
 [node name="Bottles" parent="Bottles" instance=ExtResource("3_aj7ud")]
 unique_name_in_owner = true
-position = Vector2(408, 464)
 
 [node name="Walls" type="Node2D" parent="."]
 
@@ -157,3 +154,7 @@ begin_cap_mode = 2
 end_cap_mode = 2
 
 [node name="Others" type="Node2D" parent="."]
+
+[node name="Pools" type="Node2D" parent="."]
+
+[node name="PapersOut" type="Node2D" parent="."]

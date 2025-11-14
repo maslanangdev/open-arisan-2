@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=4 uid="uid://b5q4vk5sol5pb"]
+[gd_scene load_steps=22 format=4 uid="uid://b5q4vk5sol5pb"]
 
 [ext_resource type="Script" uid="uid://camh0v5gtnqs8" path="res://scenes/game/game.gd" id="1_sul5r"]
 [ext_resource type="Theme" uid="uid://cvocwk6x1wj7h" path="res://config/themes/global.tres" id="2_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://d4m8tqnvlochh" path="res://scenes/arena/arena.tscn" id="2_7h61r"]
+[ext_resource type="Script" uid="uid://cri5kinck6eps" path="res://scenes/game/modules/debug.gd" id="2_vaxfo"]
 [ext_resource type="Script" uid="uid://c2oeqkh67nh2k" path="res://scenes/game/modules/motion_blur.gd" id="3_87uf6"]
 [ext_resource type="Script" uid="uid://c56mfy7gsrbwe" path="res://scenes/game/modules/winner_fx.gd" id="3_bdhmt"]
 [ext_resource type="FontFile" uid="uid://xme5aeq8q7r7" path="res://resources/fonts/caskaydia/CaskaydiaCoveNerdFont-Bold.ttf" id="3_kelw5"]
@@ -69,6 +70,11 @@ script = ExtResource("1_sul5r")
 
 [node name="Modules" type="Node" parent="."]
 
+[node name="Debug" type="Node" parent="Modules"]
+
+[node name="Debug" type="Node" parent="Modules/Debug"]
+script = ExtResource("2_vaxfo")
+
 [node name="MotionBlur" type="Node" parent="Modules"]
 script = ExtResource("3_87uf6")
 
@@ -86,7 +92,7 @@ script = ExtResource("6_5jirj")
 
 [node name="Background" type="CanvasLayer" parent="."]
 unique_name_in_owner = true
-layer = -1
+layer = -2
 
 [node name="TextureRect" type="ColorRect" parent="Background"]
 anchors_preset = 15
@@ -99,6 +105,7 @@ size_flags_vertical = 3
 mouse_filter = 2
 
 [node name="BG" type="Parallax2D" parent="."]
+z_index = -1
 scroll_scale = Vector2(0.5, 0.5)
 repeat_size = Vector2(1980, 1980)
 

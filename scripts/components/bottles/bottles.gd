@@ -7,7 +7,7 @@ static var instance: Bottle
 static var g_position: Vector2
 static var enable_input := true
 
-const SPEED := 50.0e3
+const SPEED := 50.0e2
 const ROT_SPEED := 30.0
 const LID_ANIM_DUR := 0.5
 
@@ -94,10 +94,7 @@ func _physics_process(delta: float) -> void:
 	var angle := _get_delta_rotation() if _grab else _last_delta_rotation
 	var delt := (Vector2.from_angle(global_rotation) - Vector2.from_angle(angle) ).length()
 	global_rotation = rotate_toward(global_rotation, angle, delt * delta * ROT_SPEED)
-	if !App.data.web_build and !App.data.android_build:
-		velocity = lerp(velocity, Vector2.ZERO, delta * 10.0)
-	else:
-		velocity = Vector2.ZERO
+	velocity = lerp(velocity, Vector2.ZERO, delta * 10.0)
 	move_and_slide.call_deferred()
 	_cap_to_viewport.call_deferred()
 

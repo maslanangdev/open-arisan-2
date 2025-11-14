@@ -4,6 +4,7 @@ const SCALE_ON_GAME := Vector2(0.75, 0.75)
 const CONTACT_REFRESH := 0.2
 const CONTACT_SPEED_MINIMUM := 224.0
 const RECT_SCALE := 1.2
+const TERMINAL_VELOCITY := 1e5
 
 @onready var icon := %Icon
 
@@ -19,18 +20,19 @@ var _collision_point: Vector2
 var _inactive := false
 
 func set_outside_bottle() -> void:
+	reparent(Arena.papers_out_nodes)
 	is_inside_bottle = false
 	collision_mask = 0
 	collision_layer = 0
 	set_collision_mask_value(1, true)
 	set_collision_layer_value(10, true)
 	get_parent().move_child(self, -1)
-	physics_material_override.bounce = 0.85
+	physics_material_override.bounce = 0.9
 	Bottle.instance.paper_passed.emit(self)
 	var col = default_color
 	col.a = 0.3
-	linear_velocity += Vector2(-1.0, 0.0).rotated(Bottle.instance.global_rotation + PI/2.0) * 1000.0
-	Trail.new(Arena.others_nodes, self, col).z_index = -1
+	linear_velocity += Vector2(-1.0, 0.0).rotated(Bottle.instance.global_rotation + PI/2.0) * 100.0
+	Trail.new(Arena.others_nodes, self, col)
 	for c in get_children():
 		AutoTween.new(c, &"global_scale", SCALE_ON_GAME)
 
@@ -63,7 +65,7 @@ func _ready() -> void:
 		Trail.remove(self)
 		for i in range(2):
 			_anim_shake()
-			SFX.create(Game.instance, [SFX.playlist.paper_hint])
+			SFX.create(Game.instance, [SFX.playlist.paper_hint], {&"volume_db": -2.0})
 			for j in range(3):
 				VFX.Explosion.SquareHighlight.new(global_position, default_color)
 				await get_tree().create_timer(0.1, false).timeout
@@ -73,6 +75,8 @@ func _ready() -> void:
 	
 ##Detects collision and retreive collision point
 func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	if state.linear_velocity.length() > TERMINAL_VELOCITY:
+		state.linear_velocity = state.linear_velocity.normalized() * TERMINAL_VELOCITY
 	if state.get_contact_count() == 0:
 		return
 	_collision_point = state.get_contact_local_position(0)
@@ -104,16 +108,6 @@ func _toggle_contact() -> void:
 	get_tree().create_timer(CONTACT_REFRESH, false).timeout.connect(func():
 		_enable_contact = true
 	)
-
-func _physics_process(_delta: float) -> void:
-	if !is_instance_valid(Bottle.instance):
-		return
-	if !is_inside_bottle:
-		return
-	var bottle := Bottle.instance
-	var max_dist := bottle.rect.size.y / 1.5
-	if global_position.distance_to(bottle.global_position) >= max_dist:
-		global_position = bottle.global_position
 
 func _anim_shake() -> void:
 	var amount = 7.0 * [-1, 1].pick_random()

@@ -26,7 +26,7 @@ func change_scene(target_scene: PackedScene, instant := false, horizontal := fal
 	AutoTween.new(transition.label, &"modulate:a", 1.0, 0.5, Tween.TRANS_LINEAR).ignore_pause()
 	await AutoTween.Method.new(self,
 		(func(val): shader.set_shader_parameter(&"height", val))
-		,0.0, 2.0, 0.7,Tween.TRANS_LINEAR).ignore_pause().finished
+		,0.0, 2.0, 0.8,Tween.TRANS_LINEAR).ignore_pause().finished
 
 	await get_tree().create_timer(delay).timeout # Yeah this is intentional delay
 	
@@ -44,7 +44,7 @@ func change_scene(target_scene: PackedScene, instant := false, horizontal := fal
 	AutoTween.new(transition2.label, &"modulate:a", 0.0, 0.5, Tween.TRANS_LINEAR).ignore_pause()
 	await AutoTween.Method.new(self,
 		(func(val): shader2.set_shader_parameter(&"height", val))
-		,2.0, 0.0, 0.7, Tween.TRANS_LINEAR).ignore_pause().finished
+		,2.0, 0.0, 0.8, Tween.TRANS_LINEAR).ignore_pause().finished
 		
 	transition2.queue_free()
 	finished.emit()
@@ -59,7 +59,7 @@ func spawn_transition(horizontal := false, invert := false, circular := false) -
 	
 	await AutoTween.Method.new(self,
 		(func(val): shader.set_shader_parameter(&"height", val))
-		,0.0, 2.0, 0.7, Tween.TRANS_LINEAR).ignore_pause().finished
+		,0.0, 2.0, 0.8, Tween.TRANS_LINEAR).ignore_pause().finished
 	
 	half_finished.emit()
 	if !circular:
@@ -69,7 +69,7 @@ func spawn_transition(horizontal := false, invert := false, circular := false) -
 		
 	await AutoTween.Method.new(self,
 		(func(val): shader.set_shader_parameter(&"height", val))
-		,2.0, 0.0, 0.7, Tween.TRANS_LINEAR).ignore_pause().finished
+		,2.0, 0.0, 0.8, Tween.TRANS_LINEAR).ignore_pause().finished
 	
 	finished.emit()
 	transition.queue_free()

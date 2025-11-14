@@ -5,11 +5,13 @@ const F_IMAGE := [&"png", &"jpg", &"jpeg", &"webp"]
 const THEME := preload("res://config/themes/global.tres")
 
 func _ready() -> void:
+	var data := DebugImport.data.duplicate()
+	data.append_array(DebugImport.data)
 	if !App.data.debug_build:
 		return
 	if !PaperQueue.get_data().is_empty():
 		return
-	for d in DebugImport.data:
+	for d in data:
 		_process_file(d)
 
 func _process_file(path: StringName) -> void:
