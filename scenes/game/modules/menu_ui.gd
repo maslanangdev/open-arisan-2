@@ -10,6 +10,7 @@ var _menu_scene := load("uid://bsdr2ntqoxu8l")
 @onready var _toggle_music_button := %MusicButton
 
 var _is_menu_shown := true
+var _is_mouse_inside := false
 
 func _ready() -> void:
 	_back_button.pressed.connect(func():
@@ -31,6 +32,9 @@ func _ready() -> void:
 		if _is_menu_shown: _hide_menu()
 		else: _show_menu()
 	)
+	_menu_container.mouse_entered.connect(func(): _is_mouse_inside = true)
+	_menu_container.mouse_exited.connect(func(): _is_mouse_inside = false)
+	
 	_toggle_music_button.pressed.connect(Game.toggle_bgm.bind(_toggle_music_button))
 	_toggle_music_button.text = "󰝛" if !Game.is_bgm_on else "󰝚"
 		
@@ -45,6 +49,10 @@ func _ready() -> void:
 		)
 	).call_deferred()
 	_hide_menu.call_deferred()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"Grab") and !_is_mouse_inside and _is_menu_shown:
+		_toggle_menu_button.pressed.emit()
 
 func _show_menu() -> void:
 	if _is_menu_shown:

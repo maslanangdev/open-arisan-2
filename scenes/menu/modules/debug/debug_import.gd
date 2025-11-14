@@ -1,5 +1,6 @@
 class_name DebugImport extends Node
 
+@export var enabled := true
 @onready var _data_importer := owner.get_node("Modules/DataImporter")
 
 const data := [
@@ -29,11 +30,13 @@ const data := [
 ]
 
 func _ready() -> void:
+	await get_tree().physics_frame
+	if !enabled:
+		return
 	if !App.data.debug_build:
 		return
 	if !PaperQueue.get_data().is_empty():
 		return
-	await get_tree().physics_frame
 	_initialize.call_deferred()
 	
 func _initialize() -> void:

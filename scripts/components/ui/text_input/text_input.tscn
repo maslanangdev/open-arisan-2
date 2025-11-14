@@ -81,6 +81,7 @@ dengan Enter. Contoh:
 Dian
 Azka
 Remu"
+context_menu_enabled = false
 wrap_mode = 1
 caret_blink = true
 caret_draw_when_editable_disabled = true

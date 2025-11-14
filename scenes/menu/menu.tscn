@@ -65,6 +65,7 @@ script = ExtResource("1_mcvr8")
 
 [node name="DebugImport" type="Node" parent="Modules/Debug"]
 script = ExtResource("3_e0arn")
+enabled = false
 
 [node name="DataImporter" type="Node" parent="Modules"]
 unique_name_in_owner = true

@@ -63,9 +63,11 @@ func _ready() -> void:
 		init = false
 	)
 	
-	PaperQueue.data_changed.connect(func(): _clear_button.disabled = PaperQueue.get_data().is_empty())
-	_clear_button.disabled = PaperQueue.get_data().is_empty()
-	
+	PaperQueue.data_changed.connect(func():
+		_clear_button.disabled = PaperQueue.get_data().is_empty()
+		_start_button.disabled = PaperQueue.get_data().is_empty()
+	)
+	PaperQueue.data_changed.emit.call_deferred()
 	SFX.create(self, [SFX.playlist.wallpaper], {&"volume_db": -8.0}).play_at(Game.bgm_playback_pos).is_bgm()
 	SceneManager.half_finished.connect(func():
 		Game.bgm_playback_pos = SFX.get_sfx(self, [SFX.playlist.wallpaper]).stream_player.get_playback_position() + AudioServer.get_time_since_last_mix()
