@@ -17,7 +17,7 @@ static func hide_dark_overlay(instant := false, duration := 1.0, transition := T
 	else: AutoTween.new(dark_overlay, &"modulate:a", 0.0, duration, transition).finished.connect(dark_overlay.hide)
 
 static func enable_motion_blur() -> void:
-	if App.data.android_build:
+	if !App.data.android_build:
 		motion_blur.activate()
 
 static func disable_motion_blur() -> void:
